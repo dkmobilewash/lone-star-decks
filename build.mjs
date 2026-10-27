@@ -305,7 +305,7 @@ function layout({ path, title, description, body, schema = [] }) {
 <meta name="theme-color" content="#10294a">
 <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+${path === '/' ? '<link rel="preload" as="image" href="/assets/img/hero-deck.webp" media="(min-width: 701px)">\n' : ''}<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css">
@@ -330,7 +330,10 @@ add('/', {
   description: `${site.name} builds custom decks, covered patios, pergolas and outdoor kitchens across Stone Oak, Boerne, Helotes, Fair Oaks Ranch and the Hill Country. Call ${site.phone} for a free quote.`,
   body: `
 <section class="hero hero-home">
-  ${heroScene}
+  <picture class="hero-photo">
+    <source media="(max-width: 700px)" srcset="/assets/img/hero-deck-sm.webp">
+    <img src="/assets/img/hero-deck.webp" alt="Composite deck with a dark-stained pergola, stone outdoor fireplace and built-in seating" width="1920" height="1539" fetchpriority="high">
+  </picture>
   <div class="wrap hero-inner">
     <p class="eyebrow">Decks • Patios • Outdoor Spaces</p>
     <h1>Backyards built for <span>Texas living</span></h1>
