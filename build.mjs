@@ -201,8 +201,7 @@ const faqList = (faqs) => `
   .join('')}</div>`;
 
 const quoteForm = (opts = {}) => `
-<form class="quote-form" name="quote" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="company">
-  <input type="hidden" name="form-name" value="quote">
+<form class="quote-form" name="quote" method="POST" action="/api/quote">
   <input type="hidden" name="page" value="${esc(opts.page || '')}">
   <p class="hp"><label>Leave this empty <input name="company" tabindex="-1" autocomplete="off"></label></p>
   <div class="field-row">
@@ -227,6 +226,7 @@ const quoteForm = (opts = {}) => `
     </label>
   </div>
   <label>Tell us about your project<textarea name="message" rows="4" placeholder="Size, materials, timeline, photos you can send later…"></textarea></label>
+  <p class="form-status" role="alert" hidden></p>
   <button class="btn btn-wood btn-block" type="submit">Get My Free Quote</button>
   <p class="form-note">Prefer to talk? Call <a href="${site.phoneHref}">${site.phone}</a> or email <a href="mailto:${site.email}">${site.email}</a>.</p>
 </form>`;

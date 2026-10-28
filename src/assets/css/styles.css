@@ -238,6 +238,9 @@ a.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-co
 }
 .quote-form input:focus, .quote-form select:focus, .quote-form textarea:focus { outline: 3px solid rgba(164, 82, 31, 0.25); border-color: var(--wood); }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.form-status { background: #fdecea; color: #8a1c13; border-radius: 10px; padding: 0.7rem 0.9rem; font-weight: 600; font-size: 0.95rem; }
+.form-status a { color: inherit; }
+.quote-form button[disabled] { opacity: 0.7; cursor: wait; }
 .form-note { font-size: 0.9rem; color: var(--muted); margin: 0.4rem 0 0; text-align: center; }
 
 .contact-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }

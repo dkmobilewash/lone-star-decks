@@ -33,10 +33,23 @@ npm run dev      # build and preview at http://localhost:8080
 npm run build    # build only; outputs to ./dist
 ```
 
-## Deploying
+## Deploying (Vercel)
 
-- **Netlify** (recommended): connect the repo. `netlify.toml` already sets the build command and output folder. The quote form uses **Netlify Forms**, so submissions show up in the Netlify dashboard, and you can turn on email notifications to info@lonestardeckstx.com.
-- **Vercel**: `vercel.json` is included. On Vercel the quote form needs a form backend such as Formspree; point the form's `action` in `build.mjs` at it.
+Connect the repo to Vercel. `vercel.json` sets the build command and output folder, and the `api/` folder deploys automatically as a serverless function.
+
+### Quote form emails (Resend)
+
+Every quote form on the site posts to `/api/quote` (`api/quote.js`). That function emails the lead to Scott through [Resend](https://resend.com). The lead's email address is set as the reply-to, so hitting reply answers the customer directly. Spam bots are filtered out with a hidden honeypot field.
+
+Add these in **Vercel → Project → Settings → Environment Variables**, then redeploy:
+
+| Variable | Required | Value |
+| --- | --- | --- |
+| `RESEND_API_KEY` | Yes | Your Resend API key (starts with `re_`) |
+| `LEAD_TO_EMAIL` | No | Where leads go. Defaults to `scott@lonestardeckstx.com`. Separate several addresses with commas. |
+| `RESEND_FROM_EMAIL` | No | Sender address on your verified domain. Defaults to `Lone Star Decks Website <leads@lonestardeckstx.com>`. |
+
+The form posts only work on Vercel; `npm run dev` previews the pages but doesn't run `/api/quote`. To test locally, use `vercel dev`.
 
 If you deploy to a domain other than `https://lonestardeckstx.com`, set the `SITE_URL` environment variable so canonical URLs and the sitemap are correct.
 
